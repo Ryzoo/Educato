@@ -1,0 +1,9 @@
+@import 'default';
+@import 'framework/spaces';
+@import 'framework/display';
+
+body,
+.ant-layout-footer,
+.ant-layout {
+  background-color: #f0f2f5 !important;
+}

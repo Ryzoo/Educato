@@ -1,0 +1,58 @@
+trigger:
+  - master
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+variables:
+  phpVersion: 7.4
+
+steps:
+- script: |
+    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+  displayName: 'Use PHP version $(phpVersion)'
+
+- script: |
+    cp .env.testing .env
+  displayName: 'Environment Setup'
+
+- script: |
+    sudo composer self-update
+    composer install --no-interaction --prefer-dist --no-suggest
+  displayName: 'Installing Package Dependencies'
+
+- script: |
+    php artisan key:generate
+  displayName: 'Prepare application key'
+
+- script: |
+    sudo npm i -g npm
+    sudo chown -R vsts:vsts ~/.npm
+    sudo chown -R vsts:vsts ~/.config
+    npm install
+    npm run prod
+  displayName: 'Generating build assets'
+
+- script: |
+    php artisan test --log-junit tests/Results/TEST-phpunit-junit.xml
+  displayName: 'Running Tests'
+
+- script: 
+    npm run lint:js && npm run lint:scss
+  displayName: 'Running linters'
+
+- task: PublishTestResults@2
+  inputs:
+    testRunner: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit
+    testResultsFiles: '**/TEST-*.xml'
+    searchFolder: '$(System.DefaultWorkingDirectory)/tests/Results' # Optional
+    mergeTestResults: false # Optional
+    #testRunTitle: # Optional
+    #buildPlatform: # Optional
+    #buildConfiguration: # Optional
+    #publishRunAttachments: true # Optional
+  condition: always()

@@ -1,0 +1,129 @@
+@import './../../../css/default';
+
+.start-section {
+  min-height: 500px;
+
+  .text-row {
+    width: max-content;
+  }
+
+  .main-text {
+    font-size: pxToRem(72px);
+    font-weight: 700;
+    line-height: .75;
+
+    span:nth-child(1) {
+      color: $primary-1;
+    }
+
+    span:nth-child(2) {
+      color: $primary;
+    }
+
+    span:nth-child(3) {
+      color: $secondary;
+    }
+
+    span:nth-child(4) {
+      color: $primary-2;
+    }
+  }
+
+  .sub-text {
+    font-size: pxToRem(18px);
+
+    span {
+      color: $primary;
+      padding: 0 4px;
+    }
+  }
+}
+
+.partners-section {
+  background-color: $gray;
+
+  .carousel-container {
+    position: relative;
+
+    .slick-slide > div {
+      text-align: center;
+    }
+
+    .carousel-arrow {
+      font-size: 32px;
+      color: $primary;
+      z-index: 1;
+
+      &.arrow-right {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        left: auto;
+        transform: translateY(-50%);
+      }
+
+      &.arrow-left {
+        position: absolute;
+        top: 50%;
+        right: auto;
+        left: 20px;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+.promo-section {
+  p {
+    max-width: 400px;
+  }
+
+  &-columns {
+    background-color: $gray;
+
+    .heading {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-size: pxToRem(30px);
+        margin-right: 10px;
+        margin-bottom: .5em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $break-x-large) {
+  .start-section {
+    .main-text {
+      font-size: pxToRem(46px);
+    }
+
+    .sub-text {
+      font-size: pxToRem(16px);
+
+      span {
+        padding: 0 2px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $break-large) {
+  .start-section {
+    min-height: unset;
+  }
+}
+
+@media screen and (max-width: $break-medium) {
+  .start-section {
+    .main-text {
+      font-size: pxToRem(32px);
+    }
+
+    .text-row {
+      width: 100%;
+    }
+  }
+}
