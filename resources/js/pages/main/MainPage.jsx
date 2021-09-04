@@ -39,8 +39,7 @@ export const MainPage = () => {
               justify="center"
             >
               <div className="main-text">
-                <span>Edu</span>
-                <span>Place</span>
+                <span>Educato</span>
                 <span>.</span>
                 <span>me</span>
               </div>
@@ -105,7 +104,7 @@ export const MainPage = () => {
             lg={12}
             order={screen.lg ? 0 : 1}
           >
-            <Title level={2}>Edu Place pozwoli Ci</Title>
+            <Title level={2}>Educato pozwoli Ci</Title>
             <p className={StringService.logicConcat({ 'mx-a': !screen.lg })}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Mi ipsum faucibus vitae aliquet nec. Enim
@@ -179,7 +178,7 @@ export const MainPage = () => {
             span={24}
             lg={12}
           >
-            <Title level={2}>Edu Place pozwoli Ci</Title>
+            <Title level={2}>Educato pozwoli Ci</Title>
             <p className={StringService.logicConcat({ 'mx-a': !screen.lg })}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Mi ipsum faucibus vitae aliquet nec. Enim
